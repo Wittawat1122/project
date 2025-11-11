@@ -24,6 +24,22 @@ export default function Admin() {
         }
     ];
 
+    const buildings = [
+        { name: 'Skyline Tower', owner: 'Metropolitan Properties', region: 'Downtown', type: 'Commercial', floors: 45, elevators: 8, status: 'Active', maintenance: '12/15/2568' },
+        { name: 'Harbor View Residences', owner: 'Coastal Living Inc', region: 'Waterfront', type: 'Residential', floors: 32, elevators: 6, status: 'Installation', maintenance: '01/20/2569' },
+        { name: 'Tech Hub Complex', owner: 'Innovation Partners', region: 'Business District', type: 'Commercial', floors: 28, elevators: 5, status: 'Problem', maintenance: '11/10/2568' },
+        { name: 'Green Valley Apartments', owner: 'Urban Developments', region: 'Suburbs', type: 'Residential', floors: 18, elevators: 4, status: 'Maintenance', maintenance: '10/25/2568' },
+        { name: 'Central Plaza', owner: 'Downtown Ventures', region: 'Downtown', type: 'Mixed-use', floors: 22, elevators: 5, status: 'Active', maintenance: '01/05/2569' }
+    ];
+
+    const getStatusClass = (status) => {
+        if (status === 'Active') return 'status status--green';
+        if (status === 'Installation') return 'status status--blue';
+        if (status === 'Problem') return 'status status--red';
+        if (status === 'Maintenance') return 'status status--yellow';
+        return 'status';
+    };
+
     return (
         <div className="admin-page">
             <header className="admin-header">
@@ -97,6 +113,73 @@ export default function Admin() {
                                 </div>
                             </article>
                         ))}
+                    </div>
+                </section>
+
+                <section className="all-buildings-section">
+                    <div className="buildings-card">
+                        <div className="card-header">
+                            <div>
+                                <h2 className="card-title">All Buildings</h2>
+                                <p className="card-desc">Manage and monitor all building installations</p>
+                            </div>
+                        </div>
+
+                        <div className="toolbar">
+                            <div className="search-box">
+                                <span className="search-icon" aria-hidden="true">🔍</span>
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    placeholder="Search buildings or owners..."
+                                />
+                            </div>
+
+                            <div className="filters">
+                                <select aria-label="Regions">
+                                    <option>All Regions</option>
+                                </select>
+                                <select aria-label="Statuses">
+                                    <option>All Statuses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="table-wrapper">
+                            <table className="buildings-table">
+                                <thead>
+                                    <tr>
+                                        <th>Building</th>
+                                        <th>Region</th>
+                                        <th>Type</th>
+                                        <th>Floors</th>
+                                        <th>Elevators</th>
+                                        <th>Status</th>
+                                        <th>Next Maintenance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {buildings.map((b, idx) => (
+                                        <tr key={idx}>
+                                            <td className="cell-building">
+                                                <div className="building-name">{b.name}</div>
+                                                <div className="building-owner">{b.owner}</div>
+                                            </td>
+                                            <td>{b.region}</td>
+                                            <td>{b.type}</td>
+                                            <td>{b.floors}</td>
+                                            <td>{b.elevators}</td>
+                                            <td><span className={getStatusClass(b.status)}>{b.status}</span></td>
+                                            <td>{b.maintenance}</td>
+                                            <td>
+                                                <button className="btn-view" type="button">View Details</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
             </main>
