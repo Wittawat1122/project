@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './customer.css';
 
 function CustomerPage() {
+    const navigate = useNavigate();
+
     // Mock data for summary and buildings
     const summary = [
         { value: '5', title: 'Total Buildings' },
@@ -63,7 +66,12 @@ function CustomerPage() {
                         <span className="bell" aria-hidden="true">🔔</span>
                         <span className="notif-badge">2</span>
                     </div>
-                    <button className="btn-logout" type="button" aria-label="Logout">
+                    <button
+                        className="btn-logout"
+                        type="button"
+                        aria-label="Logout"
+                        onClick={() => navigate('/login')}
+                    >
                         <span className="door" aria-hidden="true">🚪</span>
                         <span>Logout</span>
                     </button>
