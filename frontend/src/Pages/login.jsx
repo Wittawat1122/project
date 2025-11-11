@@ -13,7 +13,7 @@ export default function Login() {
         if (trimmed === 'user@example.com') navigate('/customer');
         else if (trimmed === 'tech@example.com') navigate('/employee');
         else if (trimmed === 'admin@example.com') navigate('/admin');
-        elsenavigate('/customer'); // default/fallback
+        else navigate('/customer'); // default/fallback
     }; 
 
     return (
